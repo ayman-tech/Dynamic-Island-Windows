@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="DynamicIsland.Timer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <Style x:Key="BtnStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" Background="Transparent" >
+                            <!--BorderThickness="1" Padding="4,2" BorderBrush="DarkGray" CornerRadius="3"-->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#337AB7" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="Transparent" Width="150" Height="50">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+            <Button x:Name="PausePlayButton" Style="{StaticResource BtnStyle}" Width="40" Background="Transparent" 
+                    Foreground="White" BorderThickness="0" Click="PausePlayButton_Click">
+                <Image x:Name="playPauseImg" MaxHeight="20" Source="C:\\Users\\Aym_s\\source\\repos\\DynamicIsland\\Assets\\play.png"/>
+            </Button>
+            <TextBlock x:Name="TimerText" Width="70" TextAlignment="Center" FontSize="24" Margin="0" VerticalAlignment="Center" 
+                    Foreground="White" Text="30:00"/>
+            <Button x:Name="ResetButton" Style="{StaticResource BtnStyle}" Width="40" Margin ="0,0,0,0" Background="Transparent" 
+                    Foreground="White" BorderThickness="0" Click="ResetButton_Click">
+                <Image x:Name="resetImg" MaxHeight="22" Source="C:\\Users\\Aym_s\\source\\repos\\DynamicIsland\\Assets\\undo.png"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
