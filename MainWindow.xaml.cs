@@ -1,11 +1,9 @@
 ﻿using Microsoft.Win32;
 using Serilog;
-using System;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
-using System.Windows.Input;
 
 namespace DynamicIsland
 {
@@ -36,10 +34,9 @@ namespace DynamicIsland
             this.Topmost = true;
             PositionWindow();
 
-            // Set window to topmost on source initialized
             this.SourceInitialized += MainWindow_SourceInitialized;
-            // Handle the StateChanged event
             this.StateChanged += MainWindow_StateChanged;
+            SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
 
             UserControl ucTimer = new Timer();
             UserControl ucMedia = new MediaControl();
@@ -60,6 +57,16 @@ namespace DynamicIsland
                 Log.ForContext("Tag", curTag).Fatal(args.ExceptionObject as Exception, "Unhandled exception");
                 Log.CloseAndFlush();
             };
+        }
+
+        private async void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
+        {
+            if(e.Reason == SessionSwitchReason.SessionUnlock)
+            {
+                Ilog.Info(curTag, "Device Logged in");
+                await Task.Delay(TimeSpan.FromSeconds(3));
+                PositionWindow();
+            }
         }
         private void PositionWindow()
         {

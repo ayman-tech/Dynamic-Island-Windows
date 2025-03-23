@@ -55,7 +55,7 @@
                     <Image Source="C:\Users\Aym_s\source\repos\DynamicIsland\Assets\rewind.png" MaxHeight="15"/>
                 </Button>
                 <Button x:Name="PlayPauseButton" Grid.Column="1" Style="{StaticResource BtnStyle}" Background="Transparent"  
-                    Foreground="White" BorderThickness="0" Click="PlayPauseButton_Click" Margin="0" MouseRightButtonDown="PlayPauseButton_MouseRightButtonDown">
+                    Foreground="White" BorderThickness="0" Click="PlayPauseButton_Click" Margin="0">
                     <Image x:Name="playPauseImg" MaxHeight="15" Source="C:\\Users\\Aym_s\\source\\repos\\DynamicIsland\\Assets\\play.png"/>
                 </Button>
                 <Button x:Name="ResetButton" Grid.Column="2" Background="Transparent" Foreground="White"
