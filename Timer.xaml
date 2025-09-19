@@ -31,13 +31,13 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Stretch">
             <Button x:Name="PausePlayButton" Style="{StaticResource BtnStyle}" Width="40" Background="Transparent" 
                     Foreground="White" BorderThickness="0" Click="PausePlayButton_Click">
-                <Image x:Name="playPauseImg" MaxHeight="20" Source="C:\\Users\\Aym_s\\source\\repos\\DynamicIsland\\Assets\\play.png"/>
+                <Image x:Name="playPauseImg" MaxHeight="20" Source="pack://application:,,,/Assets/play.png"/>
             </Button>
             <TextBlock x:Name="TimerText" Width="70" TextAlignment="Center" FontSize="24" Margin="0" VerticalAlignment="Center" 
                     Foreground="White" Text="30:00"/>
             <Button x:Name="ResetButton" Style="{StaticResource BtnStyle}" Width="40" Margin ="0,0,0,0" Background="Transparent" 
                     Foreground="White" BorderThickness="0" Click="ResetButton_Click">
-                <Image x:Name="resetImg" MaxHeight="22" Source="C:\\Users\\Aym_s\\source\\repos\\DynamicIsland\\Assets\\undo.png"/>
+                <Image x:Name="resetImg" MaxHeight="22" Source="pack://application:,,,/Assets/undo.png"/>
             </Button>
         </StackPanel>
     </Grid>

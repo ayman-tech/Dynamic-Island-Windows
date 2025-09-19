@@ -8,7 +8,7 @@
         Title="MainWindow" Height="50" Width="200"
         WindowStyle="None" AllowsTransparency="True"
         Background="Transparent"
-        Icon="C:\\Users\\Aym_s\\source\\repos\\DynamicIsland\\icon3.ico"
+        Icon="pack://application:,,,/Assets/icon3.ico"
         Closed="Window_Closed" 
         ShowInTaskbar="False">
     <Window.Resources>
@@ -43,7 +43,7 @@
                             <Setter Property="CornerRadius" Value="0,35,35,0"/>
                         </Style>
                     </Button.Resources>
-                    <Image x:Name="exchangeImg" Height="30" Source="C:\\Users\\Aym_s\\source\\repos\\DynamicIsland\\Assets\\exchange.png"/>
+                    <Image x:Name="exchangeImg" Height="30" Source="pack://application:,,,/Assets/exchange.png"/>
                 </Button>
             </StackPanel>
         </Grid>

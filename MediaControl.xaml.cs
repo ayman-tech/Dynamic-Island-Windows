@@ -24,8 +24,8 @@ namespace DynamicIsland
                 InitializeComponent();
 
                 _currentSession = null;
-                playImg = new BitmapImage(new Uri("C:\\Users\\Aym_s\\source\\repos\\DynamicIsland\\Assets\\play.png"));
-                pauseImg = new BitmapImage(new Uri("C:\\Users\\Aym_s\\source\\repos\\DynamicIsland\\Assets\\pause.png"));
+                playImg = new BitmapImage(new Uri("pack://application:,,,/Assets/play.png"));
+                pauseImg = new BitmapImage(new Uri("pack://application:,,,/Assets/pause.png"));
 
                 InitializeMediaSession();
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Serilog;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,7 +13,7 @@ namespace DynamicIsland
         // P/Invoke declarations
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+       static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
         //[DllImport("user32.dll")]
         //static extern IntPtr GetForegroundWindow();
@@ -30,33 +31,39 @@ namespace DynamicIsland
 
         public MainWindow()
         {
-            InitializeComponent();
-            this.Topmost = true;
-            PositionWindow();
-
-            this.SourceInitialized += MainWindow_SourceInitialized;
-            this.StateChanged += MainWindow_StateChanged;
-            SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
-
-            UserControl ucTimer = new Timer();
-            UserControl ucMedia = new MediaControl();
-            ucArr = [ucTimer, ucMedia];
-            activeUC = 0;
-            UserControlMainWindow.Content = ucArr[0];
-
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug() // set minimum level to log
-                .WriteTo.File("C:\\Users\\Aym_s\\source\\repos\\Logs\\DynamicIsland.log",
-                    rollingInterval: RollingInterval.Day,
-                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Tag} : {Message}{NewLine}{Exception}")
-                .CreateLogger();
-
-            // Handle unhandled exceptions
-            AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
+            try
             {
-                Log.ForContext("Tag", curTag).Fatal(args.ExceptionObject as Exception, "Unhandled exception");
-                Log.CloseAndFlush();
-            };
+                InitializeComponent();
+                this.Topmost = true;
+                PositionWindow();
+
+                this.SourceInitialized += MainWindow_SourceInitialized;
+                this.StateChanged += MainWindow_StateChanged;
+                SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
+
+                UserControl ucTimer = new Timer();
+                UserControl ucMedia = new MediaControl();
+                ucArr = [ucTimer, ucMedia];
+                activeUC = 0;
+                UserControlMainWindow.Content = ucArr[0];
+
+                Log.Logger = new LoggerConfiguration()
+                    .MinimumLevel.Debug() // set minimum level to log
+                    .WriteTo.File("C:\\Users\\Aym_s\\Downloads\\DynamicIsland.log",
+                        rollingInterval: RollingInterval.Day,
+                        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Tag} : {Message}{NewLine}{Exception}")
+                    .CreateLogger();
+
+                // Handle unhandled exceptions
+                AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
+                {
+                    Log.ForContext("Tag", curTag).Fatal(args.ExceptionObject as Exception, "Unhandled exception");
+                    Log.CloseAndFlush();
+                };
+            }
+            catch(Exception ex){
+                File.WriteAllText(@"C:\Users\Aym_s\Downloads\crashlog.txt", ex.ToString());
+            }
         }
 
         private async void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)

@@ -23,8 +23,8 @@ namespace DynamicIsland
                 Interval = TimeSpan.FromSeconds(1)
             };
             _timer.Tick += Timer_Tick;
-            playImg = new BitmapImage(new Uri("C:\\Users\\Aym_s\\source\\repos\\DynamicIsland\\Assets\\play.png"));
-            pauseImg = new BitmapImage(new Uri("C:\\Users\\Aym_s\\source\\repos\\DynamicIsland\\Assets\\pause.png"));
+            playImg = new BitmapImage(new Uri("pack://application:,,,/Assets/play.png"));
+            pauseImg = new BitmapImage(new Uri("pack://application:,,,/Assets/pause.png"));
         }
 
         private void Timer_Tick(object sender, EventArgs e)
