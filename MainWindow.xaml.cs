@@ -14,17 +14,17 @@ namespace DynamicIsland
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
-        [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
+        //[DllImport("user32.dll")]
+        //static extern IntPtr GetForegroundWindow();
 
-        [DllImport("user32.dll")]
-        static extern bool IsIconic(IntPtr hWnd);
+        //[DllImport("user32.dll")]
+        //static extern bool IsIconic(IntPtr hWnd);
 
         private static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
         private const uint SWP_NOSIZE = 0x0001;
         private const uint SWP_NOMOVE = 0x0002;
         private const uint SWP_SHOWWINDOW = 0x0040;
-        UserControl[] ucArr;
+        private UserControl[] ucArr;
         private uint activeUC;
         private readonly string curTag = "Main".PadRight(10);
 
@@ -64,7 +64,7 @@ namespace DynamicIsland
             if(e.Reason == SessionSwitchReason.SessionUnlock)
             {
                 Ilog.Info(curTag, "Device Logged in");
-                await Task.Delay(TimeSpan.FromSeconds(3));
+                await Task.Delay(TimeSpan.FromSeconds(2));
                 PositionWindow();
             }
         }
