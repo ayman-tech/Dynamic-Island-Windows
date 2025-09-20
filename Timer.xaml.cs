@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -67,6 +68,8 @@ namespace DynamicIsland
                     _timer.Stop(); 
                     playPauseImg.Source = playImg;
                     Ilog.Info(curTag, "End Timer");
+                    SystemSounds.Beep.Play();
+                    MessageBox.Show("Time’s up! ⏰ Ready for the next round?", "Timer Timeout");
                     _isRunning = false;
                 }
             }
