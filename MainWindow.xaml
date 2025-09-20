@@ -9,7 +9,6 @@
         WindowStyle="None" AllowsTransparency="True"
         Background="Transparent"
         Icon="pack://application:,,,/Assets/icon3.ico"
-        Closed="Window_Closed" 
         ShowInTaskbar="False">
     <Window.Resources>
         <Style x:Key="BtnStyle" TargetType="Button">
