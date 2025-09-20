@@ -33,8 +33,20 @@
                     Foreground="White" BorderThickness="0" Click="PausePlayButton_Click">
                 <Image x:Name="playPauseImg" MaxHeight="20" Source="pack://application:,,,/Assets/play.png"/>
             </Button>
-            <TextBlock x:Name="TimerText" Width="70" TextAlignment="Center" FontSize="24" Margin="0" VerticalAlignment="Center" 
-                    Foreground="White" Text="30:00"/>
+            <!--TextBlock x:Name="TimerText" Width="70" TextAlignment="Center" FontSize="24" Margin="0"
+                VerticalAlignment="Center" Foreground="White" Text="30:00"/-->
+            <StackPanel Orientation="Horizontal" Width="70" HorizontalAlignment="Center">
+                <TextBox x:Name="MinutesBox" Width="30" MaxLength="2" Background="Transparent" PreviewTextInput="NumberOnly_PreviewTextInput"
+                    DataObject.Pasting="NumberOnly_Pasting" Margin="0,0,2,0" Opacity="1" BorderThickness="0,0,0,0" VerticalAlignment="Center"
+                        Foreground="White" Text="30" TextAlignment="Center" FontSize="24"/>
+                <TextBlock Text=":" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                <TextBox x:Name="SecondsBox" Width="30" MaxLength="2" Background="Transparent" PreviewTextInput="NumberOnly_PreviewTextInput"
+                    DataObject.Pasting="NumberOnly_Pasting" Margin="2,0,2,0" Opacity="1" BorderThickness="0,0,0,0" VerticalAlignment="Center"
+                        Foreground="White" Text="00" TextAlignment="Center" FontSize="24"/>
+                <Button Content="Start"/>
+            </StackPanel>
+
+
             <Button x:Name="ResetButton" Style="{StaticResource BtnStyle}" Width="40" Margin ="0,0,0,0" Background="Transparent" 
                     Foreground="White" BorderThickness="0" Click="ResetButton_Click">
                 <Image x:Name="resetImg" MaxHeight="22" Source="pack://application:,,,/Assets/undo.png"/>

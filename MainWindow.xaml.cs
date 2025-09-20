@@ -13,13 +13,13 @@ namespace DynamicIsland
         // P/Invoke declarations
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-       static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+        static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
-        //[DllImport("user32.dll")]
-        //static extern IntPtr GetForegroundWindow();
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundWindow();
 
-        //[DllImport("user32.dll")]
-        //static extern bool IsIconic(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        static extern bool IsIconic(IntPtr hWnd);
 
         private static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
         private const uint SWP_NOSIZE = 0x0001;
