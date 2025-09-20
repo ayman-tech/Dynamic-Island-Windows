@@ -8,7 +8,7 @@ It sits on leftmost part of taskbar which doesnt crowd your screen. ☺️
 
 <center>![screenshot 1](resources/ss1.png)</center>
 
-### Installation
+## Installation
 
 1. Clone the repository or Download the zip file. ⬇️
 
@@ -28,22 +28,20 @@ Get-ChildItem -Path ".\bin\Release\net8.0-windows10.0.22621.0" -File | Copy-Item
 
 5. Launch DynamicIsland.exe 🚀
 
-### Usage 🚀
+## Usage 🚀
 
 Below are the buttons and tutorials to use the Dynamic Island features.
 
 ![Usage diagram](resources/diagram.jpg)
 
-### Contributing
+## Contributing
 
 This project is still under development and welcomes your help!
 
 * Report bugs 🐞 or request features via **Issues** ⚠️. 
 * Submit pull requests 💁 for enhancements or fixes 🔨.
 * Review the current codebase with patience—refactoring is in progress. 😌
-
-
+  
+  
 
 Check out my website for more info [ayman-tech.github.io](https://ayman-tech.github.io) 🌐
-
-
