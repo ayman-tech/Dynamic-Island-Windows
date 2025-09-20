@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -13,6 +15,8 @@ namespace DynamicIsland
         private bool _isRunning;
         BitmapImage playImg, pauseImg;
         private readonly string curTag = "Timer".PadRight(10);
+        // Only allow digits on keyboard input
+        private static readonly Regex _digitsOnly = new Regex("^[0-9]+$");
 
         public Timer()
         {
@@ -26,6 +30,26 @@ namespace DynamicIsland
             playImg = new BitmapImage(new Uri("pack://application:,,,/Assets/play.png"));
             pauseImg = new BitmapImage(new Uri("pack://application:,,,/Assets/pause.png"));
         }
+        private void NumberOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !_digitsOnly.IsMatch(e.Text);
+        }
+
+        // Block paste operations with non-digits
+        private void NumberOnly_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(DataFormats.Text))
+            {
+                var text = e.DataObject.GetData(DataFormats.Text) as string;
+                if (!_digitsOnly.IsMatch(text ?? ""))
+                    e.CancelCommand();
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -33,8 +57,10 @@ namespace DynamicIsland
             {
                 if (_timeLeft.TotalSeconds > 0)
                 {
-                    _timeLeft = _timeLeft.Add(TimeSpan.FromSeconds(-1));
-                    TimerText.Text = _timeLeft.ToString(@"mm\:ss");
+                    _timeLeft = _timeLeft.Subtract(TimeSpan.FromSeconds(1));
+                    MinutesBox.Text = _timeLeft.ToString("mm");
+                    SecondsBox.Text = _timeLeft.ToString("ss");
+                    //TimerText.Text = _timeLeft.ToString(@"mm\:ss");
                 }
                 else
                 {
@@ -61,12 +87,17 @@ namespace DynamicIsland
                     playPauseImg.Source = playImg;
                     Ilog.Info(curTag, "Pause Timer");
                 }
-                else
+                else if (int.TryParse(MinutesBox.Text, out var m) && int.TryParse(SecondsBox.Text, out var s) && m < 60 && s < 60)
                 {
+                    _timeLeft = TimeSpan.FromMinutes(m) + TimeSpan.FromSeconds(s);
                     _timer.Start();
                     //PausePlayButton.Content = "Pause";
                     playPauseImg.Source = pauseImg;
                     Ilog.Info(curTag, "Play Timer");
+                }
+                else
+                {
+                    MessageBox.Show("Enter 0–59 for both minutes and seconds.");
                 }
 
                 _isRunning = !_isRunning;
@@ -83,7 +114,9 @@ namespace DynamicIsland
                 Ilog.Info(curTag, "Reset Timer");
                 _timer.Stop();
                 _timeLeft = TimeSpan.FromMinutes(30);
-                TimerText.Text = _timeLeft.ToString(@"mm\:ss");
+                MinutesBox.Text = _timeLeft.ToString("mm");
+                SecondsBox.Text = _timeLeft.ToString("ss");
+                //TimerText.Text = _timeLeft.ToString(@"mm\:ss");
                 playPauseImg.Source = playImg;
                 _isRunning = false;
             }
