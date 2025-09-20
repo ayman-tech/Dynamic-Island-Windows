@@ -6,7 +6,7 @@ It brings Dynamic Island concept to Windows, offering productivity Timer ⏲️ 
 
 It sits on leftmost part of taskbar which doesnt crowd your screen. ☺️
 
-<center>![screenshot 1](resources/ss1.png)</center>
+![screenshot 1](resources/ss1.png)
 
 ## Installation
 
