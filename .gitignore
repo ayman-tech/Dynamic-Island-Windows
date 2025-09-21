@@ -4,6 +4,5 @@ sign_copy.ps1
 Prop
 DynamicIsland_TemporaryKey.pfx
 *.tmp
-*.csproj.user
-Properties/
+*.user
 .vs/

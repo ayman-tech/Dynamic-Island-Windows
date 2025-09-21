@@ -30,7 +30,7 @@
     <Grid Background="Transparent" Width="150" Height="50">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Stretch">
             <Button x:Name="PausePlayButton" Style="{StaticResource BtnStyle}" Width="40" Background="Transparent" 
-                    Foreground="White" BorderThickness="0" Click="PausePlayButton_Click">
+                    Foreground="White" BorderThickness="0" Click="PausePlayButton_Click" MouseRightButtonDown="PausePlayButton_MouseRightButtonDown">
                 <Image x:Name="playPauseImg" MaxHeight="20" Source="pack://application:,,,/Assets/play.png"/>
             </Button>
             <!--TextBlock x:Name="TimerText" Width="70" TextAlignment="Center" FontSize="24" Margin="0"

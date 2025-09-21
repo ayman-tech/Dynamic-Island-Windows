@@ -22,7 +22,8 @@ namespace DynamicIsland
         public Timer()
         {
             InitializeComponent();
-            _timeLeft = TimeSpan.FromMinutes(30);
+            _timeLeft = TimeSpan.FromMinutes(AppSettings.Time);
+            //_timeLeft = TimeSpan.FromMinutes(30);
             _timer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromSeconds(1)
@@ -111,12 +112,20 @@ namespace DynamicIsland
             }
         }
 
+        private void PausePlayButton_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if(int.TryParse(MinutesBox.Text, out var m) && m > 0)
+            {
+                AppSettings.Time = m;
+            }
+        }
+
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
             try {
                 Ilog.Info(curTag, "Reset Timer");
                 _timer.Stop();
-                _timeLeft = TimeSpan.FromMinutes(30);
+                _timeLeft = TimeSpan.FromMinutes(AppSettings.Time);
                 MinutesBox.Text = _timeLeft.ToString("mm");
                 SecondsBox.Text = _timeLeft.ToString("ss");
                 //TimerText.Text = _timeLeft.ToString(@"mm\:ss");
